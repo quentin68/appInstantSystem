@@ -48,8 +48,11 @@ ou ../mvnw spring-boot:run.
 Les services de support (configserver et eureka discovery) doivent être démarrés avant toutes autres applications (API gateway, API parkings-service, etc..). 
 
 Serveur eureka discovery - http://localhost:8761
+
 Serveur de configuration - http://localhost:8888
+
 APIGateway - http://localhost:8086
+
 Services parking - port aléatoire, consultez le tableau de bord Eureka (http://localhost:8761)
 
 
