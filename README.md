@@ -1,4 +1,4 @@
-Contexte et problématiques : 
+**Contexte et problématiques :**
 
 Dans le contexte de l’exercice, il faut se placer dans un contexte professionnel et surtout celui de Instant system. L’application est un SAAS qui peut être utilisé par de très nombreux utilisateurs (problématique numéro 1) pouvant accéder à la map de l’application mobile et avoir accès, entre autres, aux informations sur les parking les plus proches de chez soi.
 
@@ -21,7 +21,7 @@ On aurait un batch avec n étapes (STEP) avec :
 Pour que le serveur puisse accéder à l’URL en fonction de la ville où l’utilisateur veut voir les parkings les plus proches, il faut au préalable enregistrer ces URL dans un registre en base de données pour pouvoir les charger au lancement de l’application. (problématique numéro 5) 
 
 
-Architecture choisie : 
+**Architecture choisie : **
 
 Afin de réaliser cette application, on pourrait imaginer une architecture micro-service avec Spring Cloud. L’application mobile va accéder au serveur par l’API Gateway qui va servir d’aiguilleur pour accéder aux micro services de l’application qui eux seront aussi sous forme d’API REST. (Dans notre cas il y en aura qu’un seul d’implémenter (Parking), les autres étant par exemple pour la gestion des vélos, des transports en commun, du covoiturage etc..)
 Il y aura donc un micro-service qui va retourner la liste des parkings les plus proche de chez soi (API RESTful)  agrémenté par le nombre de places disponible sous forme d'événement. (EVENT sourcing). 
@@ -34,7 +34,7 @@ Notre serveur communique l'information en temps réel à notre client WEB ( app 
 
 —---------------------------------------------------------------------------------------------------------------------
 
-Lancement de l’application : 
+**Lancement de l’application** : 
 
 Pré requis : JAVA 8 (JDK 1.8)
                      Spring boot 2.6.0
@@ -53,7 +53,7 @@ APIGateway - http://localhost:8086
 Services parking - port aléatoire, consultez le tableau de bord Eureka (http://localhost:8761)
 
 
-Documentations
+**Documentations**
 
 -Swagger : 
 
@@ -65,7 +65,7 @@ http://localhost:8086/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagg
 
 Il est possible de générer la Javadoc
 
-Tests unitaires
+**Tests unitaires**
 
 Utilisation de Junit 5 Jupiter pour réaliser des tests sur mon service principal de récupération de parkings les plus proche en fonction de sa localisation (position).
 Il est important de tester l’ensemble des services que l’on développe et de parcourir les chemins (conditions) pour éviter tout problème en production.
@@ -75,7 +75,7 @@ Dans ce projet je n’ai pas mis en place les tests d’intégration simulant un
 Ces tests devront également être automatisés et exécuter au moment de la compilation (build) pour vérifier qu’il n’y a pas de régression dans le code 
 
 
-Gestion des exceptions : 
+**Gestion des exceptions : **
 
 J’ai créé des exceptions héritant de la classe Exception : 
 -ParkingBadRequestException
@@ -83,13 +83,7 @@ J’ai créé des exceptions héritant de la classe Exception :
 pour envoyer un code erreur plus précis en fonction du problème rencontré. Ces exceptions sont gérées par Spring par un @ControllerAdvice. Ceci permet de gérer les exceptions d’un micro service de manière centralisée.
 
 
-
-
-
-
-
-
-Base de données : 
+**Base de données :** 
 
 En ce qui concerne les tests j’utilise une base de données volatile hsql qui est créée à la volée puis supprimée à la fin du test. Des données y sont insérées avec un script data.sql et le schéma est créé avec un script schéma.sql dans le dossier src/java/ressources/db/hsql
 
@@ -100,13 +94,13 @@ Pour exécuter l’application avec postgresql il faut rajouter le profil postgr
 le schéma est créé avec un script schéma.sql dans le dossier src/java/ressources/db/postgresql
 J’ai désactivé l’auto génération par hibernate pour écrire un script sql à la main pour postgresql.
 
-Remarque : 
+<u>Remarque</u> : 
 
 En ce qui concerne la modélisation,pour la simplicité du mini projet, je n’ai créé qu’une seule table parking avec le nom de la ville dans cette table.
 Dans un vrai projet, j’aurai créé également une table ville. Le parking aurait donc l’id de la ville et non le nom de la ville. l’API ferait appelle à la liste des parkings avec l’id de la ville.
 
 
-Architecture DAO
+**Architecture DAO**
 
 En ce qui concerne l’accès aux données, nous sommes sur une architecture classique. Le controller REST appelle un service qui accède au repository qui récupère les données en base de données (ici postgresql) et les map dans un objet (entité) grâce à l'utilisation d’un ORM tel que hibernate avec Spring data JPA). 
 Ensuite l’objet entité est mappé avec un DTO (utilisation de mapStruct). Et c’est ce DTO et uniquement celui ci qui est envoyé au client.
@@ -115,45 +109,37 @@ Il y a un respect du principe d’encapsulation dans chacune des classes avec le
 
 
 
-
-
-
-
-
-
-
-
-Gestion des configurations de l’application 
+**Gestion des configurations de l’application **
 
 Les configurations de l’application et des micro services sont récupérées par notre serveur de configuration depuis un repository GIT. Les données de configuration en production devront être chiffrées pour ne pas être visibles en clair.
 
 
-Déploiement continu / Intégration continue.
+**Déploiement continu / Intégration continue**
 
 Dans le cadre d’un vrai projet, il est nécessaire d’accentuer ce point notamment pour que l’équipe de développement soit en collaboration étroite avec l’équipe devops. 
 Ceci se fait par la mise en place de pipeline pouvant 
 Dans le but de réduire considérablement les délais de livraison.
 
-Gestion des logs : 
+**Gestion des logs :**
 La gestion des logs devra être faite par logback et afin de centraliser la gestion de ces logs il est intéressant la programmation orienté aspect. Dans le cadre de micro service il est intéressant d’avoir une gestion de logs distribués.
 
-Internationalisation : 
+**Internationalisation : **
 Pour des raisons de simplicité pour ce projet les messages d’exception sont en dur dans l’application en français mais ceci devra être géré dans Spring avec i18n. 
 
 
-Le RAF : 
+**Le RAF : **
 
-Le batch 
+1) Le batch 
 
 Mise en place du batch, qui pour chaque ville, va récupérer la bonne source de données et l’intégrer dans notre propre base de données afin d’avoir une normalisation des données et ne pas être dépendant d’un service extérieur.
 
 En terme de modélisation j’imaginais : 
 
-Une table Parking( idParking, nom, longitude, latitude,#idVille,etc..)
-Une table Ville(idVille, nomVille)
-Une table ContextJobRepo(id, url, #idVille,#idTypeJob) avec l’url étant la source de données où l’on récupère les données. Par exemple pour notre liste de parking : https://data.grandpoitiers.fr/api/records/1.0/search/?dataset=mobilite-parkings-grand-poitiers-donnees-metiers&rows=1000&facet=nom_du_parking&facet=zone_tarifaire&facet=statut2&facet=statut3
+Une table Parking( <u>idParking</u>, nom, longitude, latitude,**#idVille**,etc..)
+Une table Ville(<u>idVille</u>, nomVille)
+Une table ContextJobRepo(id, url, **#idVille,#idTypeJob**) avec l’url étant la source de données où l’on récupère les données. Par exemple pour notre liste de parking : https://data.grandpoitiers.fr/api/records/1.0/search/?dataset=mobilite-parkings-grand-poitiers-donnees-metiers&rows=1000&facet=nom_du_parking&facet=zone_tarifaire&facet=statut2&facet=statut3
 
-Une table TypeJob(idType, nomType) avec  nomType un enum : listParking, listBike, etc..
+Une table TypeJob(<u>idType</u>, nomType) avec  nomType un enum : listParking, listBike, etc..
 
 Comment serait construit notre batch ?
 
@@ -179,6 +165,7 @@ itemWriter : Sauvegarder dans notre base de données. (dans notre cas postgresql
 .
 —----------------------------------------------------------
 
+**Suites RAF :**
 
 Mise en place des serveurs sent event en utilisant apache kafka et spring web flux pour gérer des données en temps réel pour le nombre de place disponible des parkings  
 Mise en place de spring security pour gérer l’accès au ressources de l’application en fonction du rôle. Dans la plupart du temps, le client obtient un access token qui est valide pour la durée de sa session. Il devra ajouter dans le header Authorization se sa requête HTTP le bearer token. Ce jeton s’obtient par l'intermédiaire d’un serveur d’authentification tel que Keycloack.
