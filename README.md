@@ -6,7 +6,7 @@ Dans ce contexte là, il faudra gérer la scalabilité verticale (augmenter les 
 
 Sachant que notre exercice comporte deux sources de données. Une pour la liste des parkings de la ville et une autre le nombre de places disponible pour chaque parking de cette ville en temps réel.(**problématique numéro 2**).
 
-La première source de données de la liste des parkings (**source1**) ne devrait pas évoluer souvent mais périodiquement alors que la seconde source de données (source2) évolue en permanence d’où la notion de temps réel. 
+La première source de données de la liste des parkings (**source1**) ne devrait pas évoluer souvent mais périodiquement alors que la seconde source de données (**source2**) évolue en permanence d’où la notion de temps réel. 
 
 On peut déjà imaginer pour la source1 (liste des parkings) qu’on va extraire les données pour les enregistrer dans notre propre base de données. Afin d’éviter la dépendance vers une source de données extérieure et d'être potentiellement exposé à un risque d’arrêt de service de notre fournisseur de données sans ne pouvoir rien contrôler. (**problématique numéro 3**). Ces données peuvent être mis à jour périodiquement à des moment où l’application est la moins utilisée ( par exemple la nuit) en utilisant un batch avec spring batch.
 
