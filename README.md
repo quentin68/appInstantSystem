@@ -21,6 +21,7 @@ On aurait un batch avec n étapes (STEP) avec :
 Pour que le serveur puisse accéder à l’URL en fonction de la ville où l’utilisateur veut voir les parkings les plus proches, il faut au préalable enregistrer ces URL dans un registre en base de données pour pouvoir les charger au lancement de l’application. (problématique numéro 5) 
 
 
+
 **Architecture choisie :**
 
 Afin de réaliser cette application, on pourrait imaginer une architecture micro-service avec Spring Cloud. L’application mobile va accéder au serveur par l’API Gateway qui va servir d’aiguilleur pour accéder aux micro services de l’application qui eux seront aussi sous forme d’API REST. (Dans notre cas il y en aura qu’un seul d’implémenter (Parking), les autres étant par exemple pour la gestion des vélos, des transports en commun, du covoiturage etc..)
