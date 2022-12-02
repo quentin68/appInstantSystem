@@ -21,7 +21,7 @@ On aurait un batch avec n étapes (STEP) avec :
 Pour que le serveur puisse accéder à l’URL en fonction de la ville où l’utilisateur veut voir les parkings les plus proches, il faut au préalable enregistrer ces URL dans un registre en base de données pour pouvoir les charger au lancement de l’application. (problématique numéro 5) 
 
 
-**Architecture choisie : **
+**Architecture choisie :**
 
 Afin de réaliser cette application, on pourrait imaginer une architecture micro-service avec Spring Cloud. L’application mobile va accéder au serveur par l’API Gateway qui va servir d’aiguilleur pour accéder aux micro services de l’application qui eux seront aussi sous forme d’API REST. (Dans notre cas il y en aura qu’un seul d’implémenter (Parking), les autres étant par exemple pour la gestion des vélos, des transports en commun, du covoiturage etc..)
 Il y aura donc un micro-service qui va retourner la liste des parkings les plus proche de chez soi (API RESTful)  agrémenté par le nombre de places disponible sous forme d'événement. (EVENT sourcing). 
@@ -42,7 +42,7 @@ Pré requis : JAVA 8 (JDK 1.8)
 
 Note : La version de JAVA est 8 car déjà préconfigurée sur mon poste avec compatibilité spring boot et spring cloud. Il faudra bien entendu monter de versions (JAVA 17, Spring boot 3.0.0) dans le cadre d’un vrai projet.
 
-Chaque microservice est une application Spring Boot et peut être démarré localement à l'aide de votre IDE (clique droit projet => run as JAVA application). Il faut bien s’assurer d’avoir configurer le path vers la classe main de l’application spring boot.
+Chaque microservice est une application Spring Boot et peut être démarré localement à l'aide de votre IDE (clique droit projet => run as JAVA application). Il faut bien s’assurer d’avoir configuré le path vers la classe main de l’application spring boot.
 ou ../mvnw spring-boot:run.
 
 Les services de support (configserver et eureka discovery) doivent être démarrés avant toutes autres applications (API gateway, API parkings-service, etc..). 
