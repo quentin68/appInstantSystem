@@ -1,0 +1,23 @@
+server.port: 8888
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/quentin68/configInstantSystemApp
+          username: qbauer68@gmail.com
+          password: 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
+          default-label: master
+---
+spring:
+ activate:
+  on-profiles: local 
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:///${GIT_REPO}
+          
+
+          
+          

@@ -1,0 +1,36 @@
+server:
+  port: 8060
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: api-gateway
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
+  cloud:
+    gateway:
+      routes:
+        - id: parkings-service
+          uri: lb://parkings-service
+          predicates:
+            - Path=/parkings/**
+          filters:
+            - RewritePath=/parkings/(?<path>.*), /$\{path}
+        - id: openapi
+          uri: http://localhost:${server.port}
+          predicates:
+            - Path=/v3/api-docs/**
+          filters:
+            - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs         
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: parkings
+        url: /v3/api-docs/parkings
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+    import: configserver:http://config-server:8888
