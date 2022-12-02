@@ -173,22 +173,22 @@ itemWriter : Sauvegarder dans notre base de données. (dans notre cas postgresql
 
 Mise en place des serveurs sent event en utilisant apache kafka et spring web flux pour gérer des données en temps réel pour le nombre de place disponible des parkings  
 Mise en place de spring security pour gérer l’accès au ressources de l’application en fonction du rôle. Dans la plupart du temps, le client obtient un access token qui est valide pour la durée de sa session. Il devra ajouter dans le header Authorization se sa requête HTTP le bearer token. Ce jeton s’obtient par l'intermédiaire d’un serveur d’authentification tel que Keycloack.
-Mettre en place un système de cache distribué
+Mettre en place un système de cache distribué.
 Mettre en place un serveur de log distribué.
-Mettre en place Spring boot admin pour gérer au mieux les ressources CPU, mémoire, etc..
+Mettre en place Spring boot admin pour gérer au mieux les ressources CPU, mémoire, etc.
 Mettre en place un circuit breaker pour les appels de services extérieurs et notamment pour celui appelé en temps réel chaque seconde.
-Créé des images docker à partir d’un dockerFile
+Créer des images docker à partir d’un dockerFile.
 Déployer ses micro-service dans une plateforme (PAAS) ou (CAAS conteneur as a service s' ils sont conteneurisés).
 
 Temps de travail : 9 heures
 
--Analyse approfondi pour définir l'architecture de l'application
--Développement micro services Spring boot avec organisation des pom Maven (Pom Parent puis pom enfant)
--Configuration centrale de tous les micro services sur un serveur de configuration accèssible depuis repo GIT
--Gestion des exceptions
--Mise en place des tests unitaires
--Documentation JAVA Doc + OPEN API 3 (swagger)
--Relecture de code
+-Analyse approfondi pour définir l'architecture de l'application.
+-Développement micro services Spring boot avec organisation des pom Maven (Pom Parent puis pom enfant).
+-Configuration centrale de tous les micro services sur un serveur de configuration accèssible depuis repo GIT.
+-Gestion des exceptions.
+-Mise en place des tests unitaires.
+-Documentation JAVA Doc + OPEN API 3 (swagger).
+-Relecture de code.
 -Documentation Readme approfondi avec l'explication de mes choix + le reste à faire et comment je l'envisage.
 
 
