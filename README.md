@@ -112,7 +112,7 @@ Il y a un respect du principe d’encapsulation dans chacune des classes avec le
 
 
 
-**Gestion des configurations de l’application **
+**Gestion des configurations de l’application**
 
 Les configurations de l’application et des micro services sont récupérées par notre serveur de configuration depuis un repository GIT. Les données de configuration en production devront être chiffrées pour ne pas être visibles en clair.
 
