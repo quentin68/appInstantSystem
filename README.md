@@ -166,19 +166,18 @@ ItemReader : GET de l’URL ( Récupérer les données retournées par l’URL, 
 ItemProcessor : En utilisant l’API JAVA reflection on pourrait retrouver le nom de la classe (Exemple ListParkingPoitiersProcess.class) avec la sémantique : 
  [typeJob][nomVIlle]Process.class puis exécuter la méthode process() de cette classe. Qui sera implémenté en fonction du besoin
 itemWriter : Sauvegarder dans notre base de données. (dans notre cas postgresql)
-.
-—----------------------------------------------------------
+
 
 **Suites RAF :**
 
-Mise en place des serveurs sent event en utilisant apache kafka et spring web flux pour gérer des données en temps réel pour le nombre de place disponible des parkings  
-Mise en place de spring security pour gérer l’accès au ressources de l’application en fonction du rôle. Dans la plupart du temps, le client obtient un access token qui est valide pour la durée de sa session. Il devra ajouter dans le header Authorization se sa requête HTTP le bearer token. Ce jeton s’obtient par l'intermédiaire d’un serveur d’authentification tel que Keycloack.<br>
-Mettre en place un système de cache distribué.<br>
-Mettre en place un serveur de log distribué.<br>
-Mettre en place Spring boot admin pour gérer au mieux les ressources CPU, mémoire, etc.<br>
-Mettre en place un circuit breaker pour les appels de services extérieurs et notamment pour celui appelé en temps réel chaque seconde.<br>
-Créer des images docker à partir d’un dockerFile.<br>
-Déployer ses micro-service dans une plateforme (PAAS) ou (CAAS conteneur as a service s' ils sont conteneurisés).
+-Mise en place des serveurs sent event en utilisant apache kafka et spring web flux pour gérer des données en temps réel pour le nombre de place disponible des parkings 
+-Mise en place de spring security pour gérer l’accès au ressources de l’application en fonction du rôle. Dans la plupart du temps, le client obtient un access token qui est valide pour la durée de sa session. Il devra ajouter dans le header Authorization se sa requête HTTP le bearer token. Ce jeton s’obtient par l'intermédiaire d’un serveur d’authentification tel que Keycloack.<br>
+-Mettre en place un système de cache distribué.<br>
+-Mettre en place un serveur de log distribué.<br>
+-Mettre en place Spring boot admin pour gérer au mieux les ressources CPU, mémoire, etc.<br>
+-Mettre en place un circuit breaker pour les appels de services extérieurs et notamment pour celui appelé en temps réel chaque seconde.<br>
+-Créer des images docker à partir d’un dockerFile.<br>
+-Déployer ses micro-service dans une plateforme (PAAS) ou (CAAS conteneur as a service s' ils sont conteneurisés).
 
 Temps de travail : 9 heures
 
