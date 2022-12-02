@@ -1,16 +1,16 @@
 **Contexte et problématiques :**
 
-Dans le contexte de l’exercice, il faut se placer dans un contexte professionnel et surtout celui de Instant system. L’application est un SAAS qui peut être utilisé par de très nombreux utilisateurs (problématique numéro 1) pouvant accéder à la map de l’application mobile et avoir accès, entre autres, aux informations sur les parking les plus proches de chez soi.
+Dans le contexte de l’exercice, il faut se placer dans un contexte professionnel et surtout celui de Instant system. L’application est un SAAS qui peut être utilisé par de très nombreux utilisateurs (**problématique numéro 1**) pouvant accéder à la map de l’application mobile et avoir accès, entre autres, aux informations sur les parking les plus proches de chez soi.
 
 Dans ce contexte là, il faudra gérer la scalabilité verticale (augmenter les ressources pour un serveur) et horizontale (augmenter le nombre de serveurs) pour que cette application soit durable en fonction du nombre d'utilisateurs croissants. 
 
-Sachant que notre exercice comporte deux sources de données. Une pour la liste des parkings de la ville et une autre le nombre de places disponible pour chaque parking de cette ville en temps réel.(problématique numéro 2).
+Sachant que notre exercice comporte deux sources de données. Une pour la liste des parkings de la ville et une autre le nombre de places disponible pour chaque parking de cette ville en temps réel.(**problématique numéro 2**).
 
-La première source de données de la liste des parkings (source1) ne devrait pas évoluer souvent mais périodiquement alors que la seconde source de données (source2) évolue en permanence d’où la notion de temps réel. 
+La première source de données de la liste des parkings (**source1**) ne devrait pas évoluer souvent mais périodiquement alors que la seconde source de données (source2) évolue en permanence d’où la notion de temps réel. 
 
-On peut déjà imaginer pour la source1 (liste des parkings) qu’on va extraire les données pour les enregistrer dans notre propre base de données. Afin d’éviter la dépendance vers une source de données extérieure et d'être potentiellement exposé à un risque d’arrêt de service de notre fournisseur de données sans ne pouvoir rien contrôler. (problématique numéro 3). Ces données peuvent être mis à jour périodiquement à des moment où l’application est la moins utilisée ( par exemple la nuit) en utilisant un batch avec spring batch.
+On peut déjà imaginer pour la source1 (liste des parkings) qu’on va extraire les données pour les enregistrer dans notre propre base de données. Afin d’éviter la dépendance vers une source de données extérieure et d'être potentiellement exposé à un risque d’arrêt de service de notre fournisseur de données sans ne pouvoir rien contrôler. (**problématique numéro 3**). Ces données peuvent être mis à jour périodiquement à des moment où l’application est la moins utilisée ( par exemple la nuit) en utilisant un batch avec spring batch.
 
-L’application doit pouvoir fonctionner dans d’autres villes : l’URL et format des données parking pourront donc être complètement différents. Ceci signifie qu’il y a une notion de normalisation des données à faire pour pouvoir les interpréter quelque soit la sémantique du fichier source en entrée. (problématique numéro 4). 
+L’application doit pouvoir fonctionner dans d’autres villes : l’URL et format des données parking pourront donc être complètement différents. Ceci signifie qu’il y a une notion de normalisation des données à faire pour pouvoir les interpréter quelque soit la sémantique du fichier source en entrée. (**problématique numéro 4**). 
 
 On pourrait mettre en place un batch (JOB spring batch) par ville et par type de données (dans notre cas Poitiers et parking)  
 On aurait un batch avec n étapes (STEP) avec : 
@@ -18,7 +18,7 @@ On aurait un batch avec n étapes (STEP) avec :
 -Un itemProcessor pour réaliser la normalisation des données provenant d’URL différentes avec des structures différentes.
 -Un itemWriter pour enregistrer chaque parking en base de données. 
 
-Pour que le serveur puisse accéder à l’URL en fonction de la ville où l’utilisateur veut voir les parkings les plus proches, il faut au préalable enregistrer ces URL dans un registre en base de données pour pouvoir les charger au lancement de l’application. (problématique numéro 5) 
+Pour que le serveur puisse accéder à l’URL en fonction de la ville où l’utilisateur veut voir les parkings les plus proches, il faut au préalable enregistrer ces URL dans un registre en base de données pour pouvoir les charger au lancement de l’application. (**problématique numéro 5**) 
 
 
 
