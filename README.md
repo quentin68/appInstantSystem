@@ -187,22 +187,30 @@ Comment serait construit notre batch ?
 
 Notre Job aurait deux paramètres. Un pour la ville et un pour le typeJob.
 Ceci signifie qu’on peut exécuter le batch pour une ville et un type de Job données (Exemple liste des parkings pour Poitiers seulement) mais on peut également exécuter le batch pour toutes les villes.
+	
 Algo : 
 
-Batch => Job (idville, idtypejob)
-		=> On récupère en base de données, grâce à ces paramètres, la liste des URL avec sa ville et son typeJob correspondant (jointure nécessaire pour récupérer le nom de la ville et le nom du typejob)
-		=> Pour chaque URL récupérée on effectue une étape (step) du JOB. (il y aura donc n étapes).
-		   => Pour chaque étape
-			=> ItemReader
-			=> ItemProcessor
-			=> ItemWriter
+Batch 
+	
+=> Job (idville, idtypejob)
+
+=> On récupère en base de données, grâce à ces paramètres, la liste des URL avec sa ville et son typeJob correspondant (jointure nécessaire pour récupérer le nom de la ville et le nom du typejob)
+
+=> Pour chaque URL récupérée on effectue une étape (step) du JOB. (il y aura donc n étapes).
+
+=> Pour chaque étape
+	=> ItemReader
+	=> ItemProcessor
+	=> ItemWriter
 
 
 Que font chacun de ces traitements ?
 
 ItemReader : GET de l’URL ( Récupérer les données retournées par l’URL, dans notre cas c’est du JSON )
+
 ItemProcessor : En utilisant l’API JAVA reflection on pourrait retrouver le nom de la classe (Exemple ListParkingPoitiersProcess.class) avec la sémantique : 
  [typeJob][nomVIlle]Process.class puis exécuter la méthode process() de cette classe. Qui sera implémenté en fonction du besoin
+
 itemWriter : Sauvegarder dans notre base de données. (dans notre cas postgresql)
 
 
