@@ -175,8 +175,11 @@ Mise en place du batch, qui pour chaque ville, va récupérer la bonne source de
 En terme de modélisation j’imaginais : 
 
 Une table Parking( <u>idParking</u>, nom, longitude, latitude,**#idVille**,etc..)
+	
 Une table Ville(<u>idVille</u>, nomVille)
-Une table ContextJobRepo(id, url, **#idVille,#idTypeJob**) avec l’url étant la source de données où l’on récupère les données. Par exemple pour notre liste de parking : https://data.grandpoitiers.fr/api/records/1.0/search/?dataset=mobilite-parkings-grand-poitiers-donnees-metiers&rows=1000&facet=nom_du_parking&facet=zone_tarifaire&facet=statut2&facet=statut3
+	
+Une table ContextJobRepo(id, url, **#idVille,#idTypeJob**) 
+avec l’url étant la source de données où l’on récupère les données. Par exemple pour notre liste de parking : https://data.grandpoitiers.fr/api/records/1.0/search/?dataset=mobilite-parkings-grand-poitiers-donnees-metiers&rows=1000&facet=nom_du_parking&facet=zone_tarifaire&facet=statut2&facet=statut3
 
 Une table TypeJob(<u>idType</u>, nomType) avec  nomType un enum : listParking, listBike, etc..
 
