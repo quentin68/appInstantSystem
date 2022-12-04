@@ -17,7 +17,7 @@ public interface ParkingService {
 	/**
 	 * This method will be used to get List parking around the given coordinate.
 	 * @param coordinateFrom the coordinate given
-	 * @param city the city of the parkings
+	 * @param city the city name of the parkings
 	 * @radius radius the radius of the research
 	 * @return List<ParkingDto> the list of parking around the coordinateFrom 
 	 * @throws ParkingBadRequestException bad request exception

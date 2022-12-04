@@ -8,11 +8,9 @@ import com.quentinbauer.parkingapp.parkingService.entity.Parking;
 
 /**
  * @Author Quentin Bauer
- * Mapper of the parking entity with Dto
+ * Mapper of the parking entity with Parking Dto
  */
 @Mapper(componentModel = "spring")
 public interface ParkingMapper {
-	
 	ParkingDto parkingToParkingDto(Parking parking);
-
 }

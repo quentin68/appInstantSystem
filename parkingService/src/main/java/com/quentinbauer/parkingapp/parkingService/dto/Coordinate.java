@@ -1,11 +1,15 @@
 package com.quentinbauer.parkingapp.parkingService.dto;
 
+/**
+ * @author Quentin Bauer
+ * Coordinate class with longitude and latitude
+ */
 
 public class Coordinate {
-	
+
 	private double longitude;
 	private double latitude;
-	
+
 	public Coordinate(double longitude, double latitude) {
 		this.latitude = latitude;
 		this.longitude = longitude;

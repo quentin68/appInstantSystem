@@ -7,7 +7,7 @@ public class ParkingNotFoundException extends Exception{
 	 * Exception class for parking not found
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 
 	public ParkingNotFoundException(String message) {
 		super(message);

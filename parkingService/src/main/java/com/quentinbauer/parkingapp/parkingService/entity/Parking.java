@@ -7,11 +7,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author Quentin Bauer
+ * Parking entity
+ */
+
 
 @Entity
 @Table
 public class Parking {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -27,7 +32,7 @@ public class Parking {
 
 	@Column(name = "latitude")
 	private double latitude;
-	
+
 	@Column(name = "cityname")
 	private String cityName;
 
@@ -78,6 +83,6 @@ public class Parking {
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
 	}
-	
-	
+
+
 }

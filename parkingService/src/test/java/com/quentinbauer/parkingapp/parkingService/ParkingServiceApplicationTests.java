@@ -128,7 +128,7 @@ class ParkingServiceApplicationTests {
 		int radius = 50;
 
 		List<ParkingDto> result = parkingService.getListParkingAroundPosition(coordinate, city, radius);
-
+		assertEquals(result.get(0).getAvailability(),-99);
 		assertEquals(result.size(), 1);
 	}
 

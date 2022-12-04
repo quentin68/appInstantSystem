@@ -4,6 +4,10 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author Quentin Bauer
+ * Parking DTO
+ */
 
 public class ParkingDto {
 
@@ -28,6 +32,9 @@ public class ParkingDto {
 
 	@JsonProperty("distance")
 	private double distance;
+
+	@JsonProperty("availability")
+	private int availability;
 
 	public int getId() {
 		return id;
@@ -75,7 +82,17 @@ public class ParkingDto {
 
 	public void setDistance(double distance) {
 		this.distance = distance;
-	}	
+	}
+
+	public int getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(int availability) {
+		this.availability = availability;
+	}
+
+
 
 
 }

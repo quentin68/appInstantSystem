@@ -14,7 +14,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ParkingRepository extends JpaRepository<Parking,Integer>
 {
-	  List<Parking> findByCityName(String city);
-
-
+	List<Parking> findByCityName(String city);
 }
