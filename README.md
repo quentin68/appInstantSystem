@@ -226,6 +226,8 @@ Que font chacun de ces traitements ?
 -Créer des images docker à partir d’un dockerFile.<br>
 -Déployer ses micro-service dans une plateforme (PAAS) ou (CAAS conteneur as a service s' ils sont conteneurisés).
 
+Capture d'écran Swagger et tests à cette URL https://github.com/quentin68/appInstantSystem/tree/master/z_captureEcranApp
+	
 Temps de travail : 10 heures
 
 -Analyse approfondi pour définir l'architecture de l'application.<br>
