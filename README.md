@@ -79,6 +79,8 @@ Pré requis : JAVA 8 (JDK 1.8)
 
 Note : La version de JAVA est 8 car déjà préconfigurée sur mon poste avec compatibilité spring boot et spring cloud. Il faudra bien entendu monter de versions (JAVA 17, Spring boot 3.0.0) dans le cadre d’un vrai projet.
 
+Compilation Maven : Clique droit sur le pom parent => Maven clean, maven install ( build success voir capture d'écran dossier https://github.com/quentin68/appInstantSystem/tree/master/z_captureEcranApp)
+	
 Chaque microservice est une application Spring Boot et peut être démarré localement à l'aide de votre IDE (clique droit projet => run as JAVA application). Il faut bien s’assurer d’avoir configuré le path vers la classe main de l’application spring boot.
 ou ../mvnw spring-boot:run.
 
