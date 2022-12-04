@@ -24,8 +24,6 @@ Pour que le serveur puisse accéder à l’URL en fonction de la ville où l’u
 
 **Architecture choisie :**
 
-![Schéma architecture](https://github.com/quentin68/appInstantSystem/blob/master/z_captureEcranApp/schema_mc.jpg)
-
 
 Afin de réaliser cette application, on pourrait imaginer une architecture micro-service avec Spring Cloud. L’application mobile va accéder au serveur par l’API Gateway qui va servir d’aiguilleur pour accéder aux micro services de l’application qui eux seront aussi sous forme d’API REST. (Dans notre cas il y en aura qu’un seul d’implémenter (Parking), les autres étant par exemple pour la gestion des vélos, des transports en commun, du covoiturage etc..)
 Il y aura donc un micro-service qui va retourner la liste des parkings les plus proche de chez soi (API RESTful)  agrémenté par le nombre de places disponible sous forme d'événement. (EVENT sourcing). 
