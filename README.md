@@ -206,12 +206,12 @@ Batch
 
 Que font chacun de ces traitements ?
 
-ItemReader : GET de l’URL ( Récupérer les données retournées par l’URL, dans notre cas c’est du JSON )
+-ItemReader : GET de l’URL ( Récupérer les données retournées par l’URL, dans notre cas c’est du JSON )
 
-ItemProcessor : En utilisant l’API JAVA reflection on pourrait retrouver le nom de la classe (Exemple ListParkingPoitiersProcess.class) avec la sémantique : 
+-ItemProcessor : En utilisant l’API JAVA reflection on pourrait retrouver le nom de la classe (Exemple ListParkingPoitiersProcess.class) avec la sémantique : 
  [typeJob][nomVIlle]Process.class puis exécuter la méthode process() de cette classe. Qui sera implémenté en fonction du besoin
 
-itemWriter : Sauvegarder dans notre base de données. (dans notre cas postgresql)
+-itemWriter : Sauvegarder dans notre base de données. (dans notre cas postgresql)
 
 
 **Suites RAF :**
@@ -225,7 +225,7 @@ itemWriter : Sauvegarder dans notre base de données. (dans notre cas postgresql
 -Créer des images docker à partir d’un dockerFile.<br>
 -Déployer ses micro-service dans une plateforme (PAAS) ou (CAAS conteneur as a service s' ils sont conteneurisés).
 
-Temps de travail : 9 heures
+Temps de travail : 10 heures
 
 -Analyse approfondi pour définir l'architecture de l'application.<br>
 -Développement micro services Spring boot avec organisation des pom Maven (Pom Parent puis pom enfant).<br>
