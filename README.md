@@ -32,6 +32,41 @@ Pour récupérer les données en temps réel de différentes sources de données
 
 Notre serveur communique l'information en temps réel à notre client WEB ( app angular par exemple) avec Server sent events en utilisant apache kafka et spring web flux.
 
+**Comment est construite mon API ?**
+
+Lorsque l’utilisateur de l’application demande d’afficher la liste des parkings autour de sa position il fait appel à l’api par  : 
+
+/parkings/{city} avec en paramètre le nom de la ville, les cordonnées de sa position et le rayon de la recherche (en mètre). Vous pouvez consulter plus en détail cette API sur l’URL : 
+
+**http://localhost:8086/webjars/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config**
+
+Les parkings les plus proches sont recherchés en base de données. J’ai implémenté le calcul de traitement de la distance des parkings par rapport à notre position en utilisant la formule mathématique : 
+
+R*Cos-1(sin(a)sin(b)+cos(a)cos(b)cos(c-d))
+
+avec R le rayon de la terre
+a = latitudeA
+b = latitudeB
+c = longitudeA
+d = longitudeB
+
+Ceci me permet d’avoir la distance entre le point A et le point B à vol d’oiseau.
+
+Cependant j’aurai pu utiliser, par exemple, l’API direction de google pour connaître la distance réel entre le point A et le point B en passant par les rues.
+Il aurait également été plus efficace de faire une requête en base de données qui fasse directement le calcul pour me retourner uniquement les parkings compris dans le rayon (fourni en paramètre). Cependant j’ai décidé de l’implémenter en JAVA dans le mini projet.
+
+De quelle façon je récupère les données de la source 2 (data parking temps réel) ?
+
+J’ai fait attention dans mon code à, lorsque je récupère le nombre de places disponibles, à ne pas mettre en échec tout l’appel du service à l’utilisateur. Si l’API ne récupère pas le nombre de places disponibles pour les parkings parce que le service de la source 2 (nombre de places de parking)  est indisponible, l’API  renvoie quand même à l’utilisateur la liste des parkings autour de sa position sans l’information “places disponibles”.
+
+Il est primordial de mettre en place une implémentation d’un pattern “circuit breaker” à ce niveau la (non implémenté) pour ne pas appeler le service externe en continu en cas d’arrêt de services ou d’indisponibilité.
+
+**Comment ai-je rendu mon service générique peu importe la ville, l’URL, le type et la structure de la source de données ?**
+
+Que nous recherchions la liste des parkings et ses places disponibles à Poitiers, Nice, Mulhouse, etc.. notre service fonctionnera.
+Une nouvelle interface “DataParkingProcess” a été créée avec une implémentation par ville.J’ai fait attention à ne pas rendre dépendant ces implémentations avec le format de données source. Ceci signifie que même si une source de données pour une ville passe du format JSON au format XML, l'application le prendra en compte. Il suffira d’implémenter l’interface DataFormatter<DataType>. Dans mon cas j’ai implémenté DataJsonFormatter et j’ai créé une classe DataXmlFormatter (non implémenté). On peut faire autant d’implémentation que nécessaire. De plus, la généricité avec le DataType permet de savoir quel type de données on manipule dans nos implémentations de DataParkingProcess.
+
+Dans le cadre du mini projet mes URL sont en dur dans chaque classe implémenté (ParkingPoitierDataProcessImpl, ParkingNiceDataProcessImpl). Cependant elles devront être en base de données dans une table parkingRegistry par exemple dans le cadre d’un vrai projet.
 
 —---------------------------------------------------------------------------------------------------------------------
 
